@@ -288,14 +288,23 @@ function startNodeSDK(cfg = {}) {
 
     // Return an object that is a subset of the upstream NodeSDK interface,
     // just enough to shutdown.
+    shutdownNodeSDK = shutdownFn;
     return {
         shutdown: shutdownFn,
     };
 }
 
+/**
+ * This is a terrible hack, as each call to `startNodeSDK()` overwrites
+ * this. But I can't figure out how to export this from `import.mjs`.
+ * I'm probably not going to take the time to read up on how JavaScript
+ * imports work. Oh well.
+ */
+let shutdownNodeSDK;
 module.exports = {
     getInstrumentations,
     startNodeSDK,
+    shutdownNodeSDK,
     createDynConfSpanExporter, // TODO: doc this in API user guide
     createDynConfMetricExporter, // TODO: doc this in API user guide
     createDynConfLogRecordExporter, // TODO: doc this in API user guide

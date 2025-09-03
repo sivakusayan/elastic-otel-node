@@ -23,6 +23,7 @@ import { getInstrumentations } from "./instrumentations";
 export function startNodeSDK(cfg?: Partial<NodeSDKConfiguration & ElasticNodeSDKOptions>): {
     shutdown(): Promise<void>;
 };
+export function shutdownNodeSDK(): Promise<void>
 import { createDynConfSpanExporter } from "./dynconf";
 import { createDynConfMetricExporter } from "./dynconf";
 import { createDynConfLogRecordExporter } from "./dynconf";
